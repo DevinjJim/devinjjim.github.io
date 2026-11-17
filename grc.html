@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Governance, Risk & Compliance portfolio · Devin J. Jimenez</title>
+<meta name="description" content="Devin J. Jimenez: Governance, Risk & Compliance projects with evidence from coursework labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="who" href="index.html">Devin J. Jimenez</a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="soc.html">SOC Analyst</a>
+      <a href="vulnerability-management.html">Vulnerability Mgmt</a>
+      <a href="grc.html" aria-current="page">GRC</a>
+      <a href="it-support.html">IT / Help Desk</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero page-hero" aria-labelledby="name">
+    <p class="label">Portfolio · 7 projects</p>
+    <h1 id="name">Governance, Risk &amp; Compliance<span>Devin J. Jimenez</span></h1>
+    <p class="lede">Risk assessments, PCI DSS audits, control gap analysis and the policies, standards and procedures that close the gaps, mapped to NIST and PCI DSS.</p>
+    <ul class="glance" aria-label="Skills shown on this page">
+      <li>Risk scoring with likelihood × impact</li>
+      <li>PCI DSS scoping, SAQ D and audit findings</li>
+      <li>Gap analysis against CIS Controls v8</li>
+      <li>Policies, standards and procedures mapped to NIST 800-53</li>
+      <li>Threat modeling in the SDLC</li>
+    </ul>
+  </section>
+
+  <section id="cases" aria-labelledby="cases-h">
+    <div class="sec-head">
+      <h2 id="cases-h">Projects</h2>
+      <p>Each project is filed the way I’d file a ticket: what was in scope, what I found, what I did about it, and the screenshots that prove it.</p>
+    </div>
+    <div class="cases">
+
+<article id="pci-audit" class="case" data-roles="grc vm">
+  <div class="docket">
+    <span class="id">CASE-01 · Risk assessment &amp; PCI DSS audit</span>
+    <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="vm">Vuln Mgmt</span></span>
+    <span>Team of 6 · Mar 2026</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>From risk scoring to a PCI DSS audit report</h3>
+      <p class="sub">A full audit cycle on two fictional companies: a risk assessment for iBank Financials, then a PCI DSS SAQ-D assessment and audit report for SnowBe Online as it prepares to go public.</p>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li><b>Risk assessment:</b> listed iBank's assets, threats and vulnerabilities and scored each with <mark>Risk = Likelihood × Impact</mark> on a 5×5 matrix. Client management servers scored 25 (Extreme) because new hires had full access with no segmentation.</li>
+          <li><b>Scoping:</b> placed SnowBe at <mark>PCI Merchant Level 2</mark> (about 1.2 million card transactions a year) and showed why only <mark>SAQ D</mark> applies: it stores cardholder data on its own WordPress site.</li>
+          <li><b>Assessment:</b> walked the SAQ-D requirements and marked gaps: indefinite data retention (3.1), possible stored authentication data (3.2), no change control (6.4), broad access (7), shared location logins (8.1, 8.5), no MFA for remote laptops (8.3).</li>
+          <li><b>Report:</b> wrote findings with observation, relevance and next steps, plus the AOC and quarterly ASV scan obligations.</li>
+        </ul>
+        <p><span class="label">My finding</span><br>Requirement 6.1, identifying security vulnerabilities: SnowBe needed a permanent process that pulls in external threat sources and ranks vulnerabilities high, medium and low with clear ownership, instead of a one-time consultant cleanup.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Standards</dt><dd>PCI DSS v4.0 SAQ D, NIST RMF, NIST 800-53</dd></div>
+        <div><dt>Scoring</dt><dd>5×5 likelihood × impact matrix</dd></div>
+        <div><dt>Merchant</dt><dd>Level 2, SAQ D, AOC, quarterly ASV scans</dd></div>
+        <div><dt>Deliverables</dt><dd>Risk assessment, audit plan, SAQ-D, audit report</dd></div>
+        <div><dt>Team</dt><dd>Ayana Evans, Miya Ferguson, Tyler Green, Devin Jimenez, Jada Nellems, Sean Redding</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+
+<article id="cis-gap" class="case" data-roles="grc soc">
+  <div class="docket">
+    <span class="id">CASE-02 · Post-incident gap analysis</span>
+    <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="soc">SOC</span></span>
+    <span>CIS Controls v8 · Jun 2026</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>What would have stopped the breach? A CIS Controls gap analysis</h3>
+      <p class="sub">A case study breach: an unregistered personal laptop on corporate Wi-Fi carried a worm that reached an anonymous-access FTP server, and a large encrypted exfiltration of proprietary designs was routed to the help desk instead of security.</p>
+    </div>
+    <div class="tbl" role="region" aria-label="Gaps mapped to CIS Controls" tabindex="0">
+      <table>
+        <thead><tr><th>Gap in the incident</th><th>CIS Control</th><th>Safeguards</th></tr></thead>
+        <tbody>
+          <tr><td>Unknown laptop joined the corporate network</td><td>1 Asset inventory &amp; control</td><td class="mono">1.1 · 1.2</td></tr>
+          <tr><td>FTP server allowed anonymous access</td><td>4 Secure configuration</td><td class="mono">4.1 · 4.3</td></tr>
+          <tr><td>No behavior-based endpoint detection</td><td>10 Malware defenses</td><td class="mono">10.3 · 10.5</td></tr>
+          <tr><td>FTP reachable from the wireless segment</td><td>12 Network infrastructure</td><td class="mono">12.3 · 12.4</td></tr>
+          <tr><td>No central alerting or network IDS</td><td>13 Network monitoring &amp; defense</td><td class="mono">13.1 · 13.4</td></tr>
+          <tr><td>Staff didn't recognize or report it</td><td>14 Security awareness</td><td class="mono">14</td></tr>
+          <tr><td>Exfiltration ticket went to the help desk; no 24/7 SOC</td><td>17 Incident response</td><td class="mono">17.2 · 17.4 · 17.5 · 17.6</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">For each gap I explained how the safeguard would have broken the attack chain. For example, network access control would have dropped the laptop onto a guest VLAN that couldn't reach the FTP server, and a severity matrix would have sent a large outbound transfer straight to the security team.</p>
+  </div>
+</article>
+
+<article id="ibank-compliance" class="case" data-roles="grc">
+  <div class="docket">
+    <span class="id">CASE-03 · Compliance program design</span>
+    <span class="roles"><span class="role" data-r="grc">GRC</span></span>
+    <span>4-week case study · Sep 2025</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>Mapping iBank Financials to the rules it has to follow</h3>
+      <p class="sub">A month-long case study on a growing bank that stores customers' cards, shares office Wi-Fi with another company, lets agents connect personal tablets, and gives new hires full server access.</p>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li><b>Week 1, obligations:</b> identified the regulations in scope (SOX, PCI DSS, GLBA, NYDFS, SEC, FinCEN AML/KYC) and why each applies.</li>
+          <li><b>Week 2, controls:</b> mapped iBank to the PCI DSS v4.0 requirements and picked the three most urgent: protect stored account data (3), restrict access by need to know (7), and back security with policy (12).</li>
+          <li><b>Week 3, privacy:</b> applied the NIST Privacy Framework functions (Identify-P, Govern-P, Control-P, Communicate-P) to iBank's real problems, like blanket access and stored cards.</li>
+          <li><b>Week 4, domains:</b> walked the seven IT domains from users to remote access and named the biggest risk in each, such as unmanaged BYOD tablets on the VPN.</li>
+        </ul>
+      </div>
+      <dl class="facts">
+        <div><dt>Regulations</dt><dd>SOX, PCI DSS, GLBA, NYDFS, SEC, FinCEN AML/KYC</dd></div>
+        <div><dt>Frameworks</dt><dd>PCI DSS v4.0, NIST Privacy Framework, 7 IT domains</dd></div>
+        <div><dt>Format</dt><dd>Weekly written report and recorded presentation</dd></div>
+      </dl>
+    </div>
+  </div>
+</article>
+
+<article id="snowbe-plan" class="case" data-roles="grc">
+        <div class="docket">
+          <span class="id">CASE-04 · Information security plan</span>
+          <span class="roles"><span class="role" data-r="grc">GRC</span></span>
+          <span>Team of 4 · v1.0 → v4.0</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>SnowBe Online security plan</h3>
+            <p class="sub">A security plan for a fictional online retailer with a laid-back culture, universal employee access, neglected patches and stored credit cards.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <p>Our team turned a consultant's findings into a plan of <mark>14 policies and 3 standards/procedures</mark>, mapped to <mark>NIST SP 800-53 access control (AC) families</mark> and to PCI DSS because SnowBe stores cardholder data.</p>
+              <ul>
+                <li>Replaced "most employees had universal access" with RBAC network segmentation (AC-3) and least privilege (AC-6).</li>
+                <li>Covered remote access for 30 VPN laptops (AC-17), device lock and session termination (AC-11/12), information flow (AC-4) and information sharing (AC-21).</li>
+                <li>Defined roles, an exceptions process with compensating controls, and a version history across four revisions.</li>
+              </ul>
+              <p><span class="label">My part</span><br>Researched and wrote the introduction and definitions sections, and wrote the plan's password standard and procedure (CASE-03).</p>
+            </div>
+            <dl class="facts">
+              <div><dt>Framework</dt><dd>NIST SP 800-53 (AC family), PCI DSS v4.0</dd></div>
+              <div><dt>Policies</dt><dd>Physical security, awareness training, media protection, remote access, segmentation, patch mgmt, PCI DSS, access enforcement, account mgmt, privileged access, change control, session lock, info flow, info sharing</dd></div>
+              <div><dt>Revisions</dt><dd>5 versions, Oct 2–23, 2025</dd></div>
+              <div><dt>Team</dt><dd>Miya Ferguson (lead), Devin Jimenez, Sean Redding, Alisa Jacobs</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+<article id="password" class="case" data-roles="grc it">
+        <div class="docket">
+          <span class="id">CASE-05 · Password standard &amp; procedure</span>
+          <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="it">IT Support</span></span>
+          <span>Sole author · Oct 2025</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Password standard and password procedure</h3>
+            <p class="sub">Two companion documents for SnowBe: the standard sets the technical rules, the procedure tells people and admins how to follow them.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <p>The split matters. A <mark>standard</mark> says what a compliant password is; a <mark>procedure</mark> says what an employee does on day one and what a help desk technician does when someone is locked out.</p>
+              <ul>
+                <li>Assigned responsibilities from CISO (sets parameters) to IT director (deploys enforcement tools) to sysadmins (configure OS, apps and domain controllers).</li>
+                <li>Required admins to <mark>verify a user's identity before any reset</mark> and to issue temporary credentials that must be changed at first login.</li>
+                <li>Required audit logging when a reset runs, so the ISO can review it.</li>
+              </ul>
+            </div>
+            <dl class="facts">
+              <div><dt>Length</dt><dd>12–16 characters minimum</dd></div>
+              <div><dt>Rotation</dt><dd>Every 90 days</dd></div>
+              <div><dt>Lockout</dt><dd>After repeated failed logins</dd></div>
+              <div><dt>Screening</dt><dd>Checked against breached and dictionary passwords</dd></div>
+              <div><dt>Reuse</dt><dd>Unique per account, no personal info</dd></div>
+              <div><dt>MFA</dt><dd>Required; password manager recommended</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+<article id="threat-model" class="case" data-roles="grc vm">
+        <div class="docket">
+          <span class="id">CASE-06 · Threat modeling across the policy set</span>
+          <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="vm">Vuln Mgmt</span></span>
+          <span>STRIDE · NIST SSDF · CMMC</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Shifting security left: threat modeling in SDLC, maturity and policy</h3>
+            <p class="sub">A written analysis of where threat modeling fits in SnowBe's System Development Lifecycle, Security Maturity and Patch Management policies.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <ul>
+                <li><b>Design:</b> data flow diagrams and STRIDE expose trust boundaries before code is written.</li>
+                <li><b>Build and test:</b> the model drives targeted controls (input validation against XSS and SQL injection) and points pen testing at the high-risk paths instead of generic scans.</li>
+                <li><b>Maturity:</b> with BSIMM or OWASP SAMM, threat modeling grows from high-risk projects only to a mandatory design gate, then into CI/CD.</li>
+                <li><b>Policy:</b> <mark>policy says what must be protected; the threat model shows how and where</mark>, and feeds the incident playbooks.</li>
+              </ul>
+            </div>
+            <dl class="facts">
+              <div><dt>Patch SLAs</dt><dd>Critical patches evaluated in 48 h, deployed in 7 days</dd></div>
+              <div><dt>Cadence</dt><dd>OS monthly, WordPress weekly, network firmware quarterly</dd></div>
+              <div><dt>Unpatchable</dt><dd>Compensating controls: segmentation, monitoring</dd></div>
+              <div><dt>SDLC basis</dt><dd>NIST SSDF, Executive Order 14028</dd></div>
+              <div><dt>Maturity</dt><dd>CMMC v1.02, 5 levels, 17 domains</dd></div>
+            </dl>
+          </div>
+          <p class="credit">The threat modeling analysis is mine. The SDLC and Security Maturity policies were drafted by Miya Ferguson and the Patch Management policy by Ayana Evans as part of the same team policy set.</p>
+        </div>
+      </article>
+
+<article id="incident-report" class="case" data-roles="soc grc">
+  <div class="docket">
+    <span class="id">CASE-07 · Incident reporting &amp; email analysis</span>
+    <span class="roles"><span class="role" data-r="soc">SOC</span><span class="role" data-r="grc">GRC</span></span>
+    <span>OWASP · FERPA · Thunderbird</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>Writing up a pen-test finding for leadership</h3>
+      <p class="sub">An incident report, written as the information security manager, after a third-party penetration test found broken access control and injection flaws in a university's student portal.</p>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li>Documented discovery, validation, scope and duration: an estimated <mark>22,000 students and 80 staff</mark> exposed for about six months.</li>
+          <li>Assessed impact on data, systems, money, reputation and regulation (FERPA, GDPR), and classified the information involved by sensitivity.</li>
+          <li>Built a <mark>mitigation plan with timelines</mark>: WAF virtual patches and IDS within a month, stored procedures, deny-by-default access, server-side authorization checks, and a possible rollback of the faulty update.</li>
+        </ul>
+        <p><span class="label">Also: email header analysis</span><br>In a separate lab I read a message's full headers in Thunderbird and traced each hop between the two mail servers, the virus-scan stamps, the DKIM signature and the message ID, the same skills used to triage phishing.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Findings</dt><dd>Broken access control, injection, privilege escalation</dd></div>
+        <div><dt>Users</dt><dd>~22,000 students, 80 staff</dd></div>
+        <div><dt>Regulation</dt><dd>FERPA, GDPR</dd></div>
+        <div><dt>Mitigations</dt><dd>WAF, IDS, stored procedures, deny-by-default, server-side authorization</dd></div>
+      </dl>
+    </div>
+    <div class="evidence">
+      <figure><button type="button" aria-label="Enlarge: email headers"><img src="img/hdr.jpg" alt="Full email headers open in Thunderbird showing received hops and DKIM signature" loading="lazy"></button><figcaption>Message headers traced in Thunderbird</figcaption></figure>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section aria-labelledby="more-h">
+    <div class="sec-head"><h2 id="more-h">Hiring for a different role?</h2></div>
+    <div class="links">
+      <a href="soc.html">SOC Analyst</a>
+      <a href="vulnerability-management.html">Vulnerability Management</a>
+      <a href="it-support.html">IT Support &amp; Help Desk</a>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Contact</h2></div>
+    <div class="contact">
+      <p class="big">Open to SOC, vulnerability management, GRC and IT support roles in the Orlando area.</p>
+      <div class="links">
+        <a class="primary" href="mailto:Devinjim09@gmail.com">Email me</a>
+        <a href="https://www.linkedin.com/in/devin-jacob-jimenez">LinkedIn</a>
+        <a href="https://github.com/DevinjJim">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Devin J. Jimenez · Coursework portfolio · Client names and networks in these projects are fictional lab scenarios.</div>
+</footer>
+
+<dialog id="lightbox" aria-label="Screenshot">
+  <img id="lightbox-img" alt="">
+  <div class="bar"><span id="lightbox-cap"></span><button type="button" id="lightbox-close">Close</button></div>
+</dialog>
+
+<script src="site.js"></script>
+</body>
+</html>

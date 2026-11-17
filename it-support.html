@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IT Support & Help Desk portfolio · Devin J. Jimenez</title>
+<meta name="description" content="Devin J. Jimenez: IT Support & Help Desk projects with evidence from coursework labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="who" href="index.html">Devin J. Jimenez</a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="soc.html">SOC Analyst</a>
+      <a href="vulnerability-management.html">Vulnerability Mgmt</a>
+      <a href="grc.html">GRC</a>
+      <a href="it-support.html" aria-current="page">IT / Help Desk</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero page-hero" aria-labelledby="name">
+    <p class="label">Portfolio · 5 projects</p>
+    <h1 id="name">IT Support &amp; Help Desk<span>Devin J. Jimenez</span></h1>
+    <p class="lede">Building and supporting the systems: Windows Server, Active Directory, file shares, Linux services, addressing and patching.</p>
+    <ul class="glance" aria-label="Skills shown on this page">
+      <li>Windows Server users, groups, shares and permissions</li>
+      <li>Active Directory, DNS, IIS and load balancing</li>
+      <li>Linux services: Samba, Docker, systemd</li>
+      <li>IP addressing plans and static configuration</li>
+      <li>Patching Windows and Linux hosts and verifying with a rescan</li>
+    </ul>
+  </section>
+
+  <section id="cases" aria-labelledby="cases-h">
+    <div class="sec-head">
+      <h2 id="cases-h">Projects</h2>
+      <p>Each project is filed the way I’d file a ticket: what was in scope, what I found, what I did about it, and the screenshots that prove it.</p>
+    </div>
+    <div class="cases">
+
+<article id="marconi" class="case" data-roles="it">
+        <div class="docket">
+          <span class="id">CASE-01 · Small-office network build</span>
+          <span class="roles"><span class="role" data-r="it">IT Support</span></span>
+          <span>Final project · Dec 2024 · 24 hrs logged</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Network implementation for Marconi Law Firm</h3>
+            <p class="sub">Scoped, priced, addressed and configured the network for a 10-person law office in Orlando, delivered as a client report and pitch.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <ul>
+                <li>Specified and priced <mark>28 nodes</mark>: 10 laptops, 10 VoIP phones, router, rack server with RAID 5, 48-port PoE switch, 2 Wi-Fi 6E access points, printer, conference phone and smart TV.</li>
+                <li>Designed the addressing plan: a /24 with reserved ranges for computers (.1–30), VoIP (.31–60), network backbone (.80–90), WAPs (.90–100) and shared devices (.100–120), plus a static IP for every node.</li>
+                <li>Configured Windows Server: 10 user accounts, Attorneys / Accounting / Administrative groups, and departmental shared folders with permissions.</li>
+                <li><mark>Troubleshot "user does not have privileges" errors</mark> on the shares; the causes were the firewall and overlapping share permissions.</li>
+                <li>Placed every device on the floor plan and kept timesheets and weekly status reports across four milestones.</li>
+              </ul>
+            </div>
+            <dl class="facts">
+              <div><dt>Budget</dt><dd>$60,000</dd></div>
+              <div><dt>Delivered</dt><dd>$51,561 incl. $15,000 first-year support</dd></div>
+              <div><dt>Timeline</dt><dd>5 weeks, 4 milestones</dd></div>
+              <div><dt>Server</dt><dd>Dell PowerEdge R450, 4 × 2.4 TB SAS</dd></div>
+              <div><dt>Network</dt><dd>ADTRAN NetVanta 3148, Cisco CBS220-48P, Aruba AP-635</dd></div>
+              <div><dt>Endpoints</dt><dd>Acer TravelMate P4, Windows 11 Pro, Grandstream GXP2140</dd></div>
+            </dl>
+          </div>
+          <div class="evidence wide">
+            <figure><button type="button" aria-label="Enlarge: floor plan"><img src="img/case-floorplan.jpg" alt="Office floor plan with numbered laptops, VoIP phones, WAPs, router, switch and server" loading="lazy"></button><figcaption>Topology on the floor plan, numbered to match the IP table</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+<article id="build-guide" class="case" data-roles="it">
+        <div class="docket">
+          <span class="id">CASE-02 · Infrastructure lab manual</span>
+          <span class="roles"><span class="role" data-r="it">IT Support</span></span>
+          <span>34-page guide · 3 milestones</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Linux and Windows Server build guide</h3>
+            <p class="sub">A step-by-step manual I wrote so someone else could rebuild the environment: containers, cross-platform file sharing, Active Directory and load balancing.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <ul>
+                <li><b>Docker:</b> installed Docker on Ubuntu and deployed the Mayan EDMS document system with Docker Compose; documented its OCR import, workflow and audit trail features.</li>
+                <li><b>Samba:</b> renamed the host with <code>nmtui</code>, configured <code>smb.conf</code>, created the share and user, and <mark>verified a file written from Windows appeared on Ubuntu</mark>.</li>
+                <li><b>Windows Server:</b> ran Sysprep on cloned VMs, set static IPs on two NICs, installed IIS, and <mark>promoted a domain controller in a new AD forest</mark>.</li>
+                <li><b>High availability:</b> built a two-node Network Load Balancing cluster in multicast mode.</li>
+              </ul>
+            </div>
+            <dl class="facts">
+              <div><dt>Platforms</dt><dd>Ubuntu, Windows Server, Proxmox VMs</dd></div>
+              <div><dt>Services</dt><dd>Docker, Mayan EDMS, Samba, AD DS, DNS, IIS, NLB</dd></div>
+              <div><dt>Commands</dt><dd><code>docker compose</code>, <code>nmtui</code>, <code>systemctl</code>, <code>chown</code>, <code>sysprep</code></dd></div>
+            </dl>
+          </div>
+          <div class="evidence">
+            <figure><button type="button" aria-label="Enlarge: Docker Compose"><img src="img/case-docker.jpg" alt="Terminal pulling Mayan EDMS containers with docker compose" loading="lazy"></button><figcaption>Pulling the Mayan EDMS stack with Docker Compose</figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: Samba share"><img src="img/case-samba.jpg" alt="Windows Explorer opening a Samba share served from Ubuntu" loading="lazy"></button><figcaption>Ubuntu Samba share opened from Windows</figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: AD DS wizard"><img src="img/case-adds.jpg" alt="Active Directory Domain Services configuration wizard adding a new forest" loading="lazy"></button><figcaption>Promoting a domain controller in a new forest</figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: NLB cluster"><img src="img/case-nlb.jpg" alt="Network Load Balancing cluster parameters in multicast mode" loading="lazy"></button><figcaption>NLB cluster parameters, multicast mode</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+<article id="vm-lifecycle" class="case" data-roles="vm it">
+  <div class="docket">
+    <span class="id">CASE-03 · Vulnerability management lifecycle</span>
+    <span class="roles"><span class="role" data-r="vm">Vuln Mgmt</span><span class="role" data-r="it">IT Support</span></span>
+    <span>Nessus · Kali · Ticketing · Jul 2026</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>Scan, patch, rescan: remediating a five-host lab network</h3>
+      <p class="sub">Weeks 1–3 of a vulnerability management capstone: inventory the environment, run credentialed and non-credentialed Nessus scans, then work every Critical and High finding down to zero or document why it can't be.</p>
+    </div>
+
+    <div class="tbl" role="region" aria-label="Remediation results by host" tabindex="0">
+      <table>
+        <thead><tr><th>Host</th><th>OS</th><th>Initial scan</th><th>After OS updates</th><th>After remediation</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">172.16.1.3</td><td>Windows Server 2019</td><td><span class="sev crit">15 crit</span> · <span class="sev high">35 high</span></td><td><span class="sev ok">0 crit</span> · <span class="sev high">1 high</span></td><td><span class="sev ok">0 crit · 0 high</span></td></tr>
+          <tr><td class="mono">172.17.1.2</td><td>Windows Server 2008 R2 (end of life)</td><td><span class="sev crit">69 crit</span> · <span class="sev high">329 high</span></td><td>Updates blocked (error 80072EFE)</td><td><span class="sev crit">Compensating controls</span></td></tr>
+          <tr><td class="mono">172.16.1.105</td><td>Rocky Linux (Nessus server)</td><td><span class="sev ok">0 crit · 0 high</span></td><td>N/A</td><td><span class="sev ok">Clean</span></td></tr>
+          <tr><td class="mono">172.16.1.107</td><td>WordPress server</td><td><span class="sev ok">0 crit · 0 high</span></td><td>N/A</td><td><span class="sev ok">Clean</span></td></tr>
+          <tr><td class="mono">172.16.1.106</td><td>Kali Linux</td><td><span class="sev na">Credentialed auth failed</span></td><td>Updated anyway</td><td><span class="sev na">Blind spot, ticketed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cols">
+      <div class="prose">
+        <p><span class="label">What I did</span></p>
+        <ul>
+          <li><b>Asset discovery:</b> verified access to the Kali control host, Nessus and the ticketing spreadsheet, created inventory tickets for Nessus, Wazuh and Splunk, checked scanner health, and documented all 20 Nessus scan templates and what each is for.</li>
+          <li><b>Scanning:</b> ran a non-credentialed and a <mark>credentialed Basic Network Scan</mark> across all five hosts, plus an all-ports discovery scan. Credentials authenticated on three hosts; I flagged the two failures.</li>
+          <li><b>Remediation:</b> patched the Server 2019 host, rescanned, then <mark>closed the last High (CVE-2013-3900) with the <code>EnableCertPaddingCheck</code> registry fix</mark> and rescanned to confirm 0 / 0.</li>
+          <li><b>End-of-life server:</b> Windows Update on Server 2008 failed on activation. I documented the failure and recommended isolation, a strict host firewall, disabling unneeded roles and SMBv1, and SIEM/EDR monitoring.</li>
+          <li>Logged each remediation in a ticket stating whether OS updates were completed.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:10px">When you can't patch: research and controls I wrote up</p>
+        <ol class="prio">
+          <li><span><b>End-of-life OS</b> Find them from asset inventory and scan output; segment, tighten firewalls, add HIDS/EDR, least privilege.</span></li>
+          <li><span><b>Legacy libraries</b> Software composition analysis and CVE review; WAF rules, containment, input validation, egress filtering.</span></li>
+          <li><span><b>Design flaws</b> Threat modeling against MITRE ATT&amp;CK; micro-segmentation, zero trust gateways, MFA, encryption in transit.</span></li>
+          <li><span><b>Firmware limits</b> Isolated out-of-band management, disable Telnet/HTTP/old SNMP, enforce SSHv2/HTTPS and ACLs.</span></li>
+          <li><span><b>Embedded / OT</b> CISA ICS advisories; ICS-aware IDS, one-way gateways, hardened industrial firewalls.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <figure><button type="button" aria-label="Enlarge: credentialed scan"><img src="img/vm_cred.jpg" alt="Nessus credentialed scan showing five hosts and their vulnerability counts" loading="lazy"></button><figcaption>Credentialed scan across all five hosts</figcaption></figure>
+      <figure><button type="button" aria-label="Enlarge: before remediation"><img src="img/vm_before.jpg" alt="Nessus results for 172.16.1.3 before patching" loading="lazy"></button><figcaption>Server 2019 host before patching</figcaption></figure>
+      <figure><button type="button" aria-label="Enlarge: after remediation"><img src="img/vm_after.jpg" alt="Nessus results for 172.16.1.3 after remediation with no critical or high findings" loading="lazy"></button><figcaption>Same host after the fix: 0 Critical, 0 High</figcaption></figure>
+      <figure><button type="button" aria-label="Enlarge: end-of-life server"><img src="img/vm_eol.jpg" alt="Nessus results for the Windows Server 2008 host with critical findings" loading="lazy"></button><figcaption>End-of-life Server 2008 host that couldn't be patched</figcaption></figure>
+    </div>
+    <p class="credit">This continues in the final report, where the open findings became tracked tickets and I investigated the Kali host.</p>
+  </div>
+</article>
+
+<article id="os-hardening" class="case" data-roles="vm it">
+  <div class="docket">
+    <span class="id">CASE-04 · Patch and verify before production</span>
+    <span class="roles"><span class="role" data-r="vm">Vuln Mgmt</span><span class="role" data-r="it">IT Support</span></span>
+    <span>Nessus · Windows Update · Dec 2025</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>Hardening the HammerCorp server: 115 findings down to one medium</h3>
+      <p class="sub">An OS hardening lab: scan the HammerCorp corporate server (Windows 10), patch it, and rescan to measure what the updates actually fixed.</p>
+    </div>
+    <div class="tbl" role="region" aria-label="Scan results before and after patching" tabindex="0">
+      <table>
+        <thead><tr><th>Scan</th><th>Total findings</th><th>What was left</th></tr></thead>
+        <tbody>
+          <tr><td>Before patching</td><td class="mono">115</td><td><span class="sev crit">Many Critical</span>, mostly from missing Windows updates</td></tr>
+          <tr><td>After updates + rescan</td><td class="mono">42</td><td><span class="sev med">1 Medium</span> (SMB signing not required, CVSS 5.3) and 41 informational</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li>Ran a Nessus scan against the HammerCorp corporate server and concluded it was <mark>not safe to put into production</mark>: 115 findings, many of them Critical.</li>
+          <li>Applied the outstanding Windows updates and rescanned. <mark>Every Critical and High was gone</mark>; the only real finding left was a Medium, SMB signing not required.</li>
+          <li>Explained why informational findings still matter: they don't break anything themselves, but they tell an attacker what to look for.</li>
+        </ul>
+        <p><span class="label">My go-live checklist</span><br>Configure the server, firewall rules and Active Directory first, then scan, patch what the scan finds, and run a final scan to catch anything lingering before the system goes into production.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Target</dt><dd>HammerCorp corporate server, Windows 10</dd></div>
+        <div><dt>Before</dt><dd>115 findings</dd></div>
+        <div><dt>After</dt><dd>42 findings: 1 Medium, 41 Info</dd></div>
+        <div><dt>Method</dt><dd>Scan → patch → rescan</dd></div>
+      </dl>
+    </div>
+    <div class="evidence wide">
+      <figure><button type="button" aria-label="Enlarge: follow-up scan"><img src="img/hardening_rescan.jpg" alt="Nessus follow-up scan of the Windows 10 host showing one medium finding, SMB signing not required, and informational findings" loading="lazy"></button><figcaption>Follow-up scan: no Critical or High left, one Medium</figcaption></figure>
+    </div>
+  </div>
+</article>
+
+<article id="password" class="case" data-roles="grc it">
+        <div class="docket">
+          <span class="id">CASE-05 · Password standard &amp; procedure</span>
+          <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="it">IT Support</span></span>
+          <span>Sole author · Oct 2025</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Password standard and password procedure</h3>
+            <p class="sub">Two companion documents for SnowBe: the standard sets the technical rules, the procedure tells people and admins how to follow them.</p>
+          </div>
+          <div class="cols">
+            <div class="prose">
+              <p>The split matters. A <mark>standard</mark> says what a compliant password is; a <mark>procedure</mark> says what an employee does on day one and what a help desk technician does when someone is locked out.</p>
+              <ul>
+                <li>Assigned responsibilities from CISO (sets parameters) to IT director (deploys enforcement tools) to sysadmins (configure OS, apps and domain controllers).</li>
+                <li>Required admins to <mark>verify a user's identity before any reset</mark> and to issue temporary credentials that must be changed at first login.</li>
+                <li>Required audit logging when a reset runs, so the ISO can review it.</li>
+              </ul>
+            </div>
+            <dl class="facts">
+              <div><dt>Length</dt><dd>12–16 characters minimum</dd></div>
+              <div><dt>Rotation</dt><dd>Every 90 days</dd></div>
+              <div><dt>Lockout</dt><dd>After repeated failed logins</dd></div>
+              <div><dt>Screening</dt><dd>Checked against breached and dictionary passwords</dd></div>
+              <div><dt>Reuse</dt><dd>Unique per account, no personal info</dd></div>
+              <div><dt>MFA</dt><dd>Required; password manager recommended</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="more-h">
+    <div class="sec-head"><h2 id="more-h">Hiring for a different role?</h2></div>
+    <div class="links">
+      <a href="soc.html">SOC Analyst</a>
+      <a href="vulnerability-management.html">Vulnerability Management</a>
+      <a href="grc.html">Governance, Risk &amp; Compliance</a>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Contact</h2></div>
+    <div class="contact">
+      <p class="big">Open to SOC, vulnerability management, GRC and IT support roles in the Orlando area.</p>
+      <div class="links">
+        <a class="primary" href="mailto:Devinjim09@gmail.com">Email me</a>
+        <a href="https://www.linkedin.com/in/devin-jacob-jimenez">LinkedIn</a>
+        <a href="https://github.com/DevinjJim">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Devin J. Jimenez · Coursework portfolio · Client names and networks in these projects are fictional lab scenarios.</div>
+</footer>
+
+<dialog id="lightbox" aria-label="Screenshot">
+  <img id="lightbox-img" alt="">
+  <div class="bar"><span id="lightbox-cap"></span><button type="button" id="lightbox-close">Close</button></div>
+</dialog>
+
+<script src="site.js"></script>
+</body>
+</html>

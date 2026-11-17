@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SOC Analyst portfolio · Devin J. Jimenez</title>
+<meta name="description" content="Devin J. Jimenez: SOC Analyst projects with evidence from coursework labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="who" href="index.html">Devin J. Jimenez</a>
+    <nav aria-label="Pages">
+      <a href="index.html">Home</a>
+      <a href="soc.html" aria-current="page">SOC Analyst</a>
+      <a href="vulnerability-management.html">Vulnerability Mgmt</a>
+      <a href="grc.html">GRC</a>
+      <a href="it-support.html">IT / Help Desk</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero page-hero" aria-labelledby="name">
+    <p class="label">Portfolio · 4 projects</p>
+    <h1 id="name">SOC Analyst<span>Devin J. Jimenez</span></h1>
+    <p class="lede">Investigating hosts, validating attacks, mapping a breach to the controls that would have stopped it, and writing it up so leadership can act.</p>
+    <ul class="glance" aria-label="Skills shown on this page">
+      <li>Linux host triage: accounts, logins, cron jobs, shell history</li>
+      <li>Spotting persistence and anti-forensics, validated in Velociraptor</li>
+      <li>Reproducing an exploit to confirm a scanner finding</li>
+      <li>Email header analysis for phishing triage</li>
+      <li>Incident reports with impact, scope and a timed mitigation plan</li>
+    </ul>
+  </section>
+
+  <section id="cases" aria-labelledby="cases-h">
+    <div class="sec-head">
+      <h2 id="cases-h">Projects</h2>
+      <p>Each project is filed the way I’d file a ticket: what was in scope, what I found, what I did about it, and the screenshots that prove it.</p>
+    </div>
+    <div class="cases">
+
+<article id="final-report" class="case" data-roles="soc vm">
+        <div class="docket">
+          <span class="id">CASE-01 · Incident response &amp; vulnerability remediation</span>
+          <span class="roles"><span class="role" data-r="soc">SOC</span><span class="role" data-r="vm">Vuln Mgmt</span></span>
+          <span>Kali · Nessus · Velociraptor</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <h3>Nessus triage and a Linux persistence hunt</h3>
+            <p class="sub">Week 4 of the vulnerability management capstone: turned a Nessus scan into tracked tickets, ranked the medium findings, then investigated a Kali host with Velociraptor.</p>
+          </div>
+
+          <div class="tbl" role="region" aria-label="Security tickets" tabindex="0">
+            <table>
+              <thead><tr><th>Ticket</th><th>Host</th><th>Finding</th><th>Severity</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">T-1</td><td class="mono">172.17.1.2</td><td>Windows Server 2008 past security end-of-life; no vendor patches</td><td><span class="sev crit">Critical</span></td><td>Open · compensating controls</td></tr>
+                <tr><td class="mono">T-2</td><td class="mono">172.17.1.2</td><td>CVE-2020-1350 Windows DNS Server RCE (SIGRed)</td><td><span class="sev crit">Critical</span></td><td>Open</td></tr>
+                <tr><td class="mono">T-3</td><td class="mono">172.17.1.2</td><td>MS15-034 HTTP.sys remote code execution</td><td><span class="sev crit">Critical</span></td><td>Open</td></tr>
+                <tr><td class="mono">T-4</td><td class="mono">172.17.1.2</td><td>MS14-035 Windows/IE cumulative RCE</td><td><span class="sev crit">Critical</span></td><td>Open</td></tr>
+                <tr><td class="mono">T-5</td><td class="mono">172.17.1.2</td><td>MS12-078 kernel-mode font parsing RCE</td><td><span class="sev crit">Critical</span></td><td>Open</td></tr>
+                <tr><td class="mono">T-6</td><td class="mono">172.16.1.3</td><td>CVE-2013-3900 WinVerifyTrust signature padding</td><td><span class="sev high">High</span></td><td><span class="sev ok">Resolved</span> rescan: 0 crit / 0 high</td></tr>
+                <tr><td class="mono">T-7</td><td class="mono">172.16.1.106</td><td>Credentialed scan failed to authenticate; host is a blind spot</td><td><span class="sev na">Unknown</span></td><td>Open · troubleshooting</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cols">
+            <div class="prose">
+              <p><span class="label">What I did</span></p>
+              <ul>
+                <li>Fixed T-6 by enabling the <code>EnableCertPaddingCheck</code> registry value, then <mark>rescanned to confirm zero critical and zero high findings</mark> on that host.</li>
+                <li>For the end-of-life server, documented why patching was impossible and proposed <mark>isolation, strict firewall rules, disabled services and SIEM/EDR monitoring</mark> until the workload migrates.</li>
+                <li>Recorded a resolution timeline from scan discovery and noted that a real SOC needs automatic ticket timestamps to measure MTTR.</li>
+                <li>Planned next steps for the failed credentialed scan: check scanner permissions, SSH and firewall rules, Nessus logs, and fall back to an uncredentialed scan for partial visibility.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="label" style="margin-bottom:10px">Top 5 medium findings, by priority</p>
+              <ol class="prio">
+                <li><span><b>MS13-036</b> Four kernel CVEs (race conditions, font parsing, NTFS null deref) lead to kernel privilege escalation.</span></li>
+                <li><span><b>MS15-063</b> DLL planting via LoadLibrary grants full admin, but needs plant + trigger.</span></li>
+                <li><span><b>MS12-033</b> Partition Manager EoP; serious but less documented.</span></li>
+                <li><span><b>MS13-077</b> Service Control Manager EoP; vague advisory, no clear exploit chain.</span></li>
+                <li><span><b>MS14-019</b> Needs a user to run a crafted .bat/.cmd and gives no privilege gain.</span></li>
+              </ol>
+            </div>
+          </div>
+
+          <div>
+            <p class="label" style="margin-bottom:12px">Host investigation findings</p>
+            <div class="findings">
+              <div class="finding alert"><h4>Root crontab persistence</h4><p><code>@reboot /usr/sbin/shutdown +360</code> in root's crontab, not part of a default Kali build. Recommended removal, a sweep of <code>/etc/cron.d</code> and all user crontabs, a review of <code>auth.log</code>, and rotating sudo credentials.</p></div>
+              <div class="finding alert"><h4>Anti-forensics in shell history</h4><p><code>~/.zsh_history</code> opened with <code>sudo crontab -e</code> followed by <code>history -c</code>: someone edited the scheduler and then cleared history to cover it.</p></div>
+              <div class="finding clear"><h4>Hidden file ruled out</h4><p>Found <code>.bashrc.original</code>, a pattern used to hide injected payloads. Diffed it against the live <code>.bashrc</code>: only cosmetic aliases and prompt changes.</p></div>
+              <div class="finding clear"><h4>No rogue accounts</h4><p>Manual review of <code>/etc/passwd</code> (UID ≥ 1000) and <code>/etc/shadow</code>, cross-checked with Velociraptor's <code>Linux.Sys.Users</code> and <code>Linux.Sys.LastUserLogin</code> artifacts.</p></div>
+            </div>
+          </div>
+
+          <div class="evidence">
+            <figure><button type="button" aria-label="Enlarge: root crontab"><img src="img/case-crontab.jpg" alt="Terminal showing sudo crontab -l with an @reboot shutdown entry" loading="lazy"></button><figcaption>Root crontab with the unauthorized <code>@reboot</code> entry</figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: zsh history"><img src="img/case-zshhist.jpg" alt="Terminal output of the zsh history file" loading="lazy"></button><figcaption>Shell history: crontab edit, then <code>history -c</code></figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: Velociraptor console"><img src="img/case-raptor.jpg" alt="Velociraptor web console welcome screen" loading="lazy"></button><figcaption>Velociraptor server deployed on Kali</figcaption></figure>
+            <figure><button type="button" aria-label="Enlarge: Nessus finding"><img src="img/case-nessus.jpg" alt="Nessus plugin detail for MS13-036" loading="lazy"></button><figcaption>Nessus detail for the top-ranked medium finding</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+<article id="eternalblue" class="case" data-roles="vm soc">
+  <div class="docket">
+    <span class="id">CASE-02 · Validate, exploit, remediate</span>
+    <span class="roles"><span class="role" data-r="vm">Vuln Mgmt</span><span class="role" data-r="soc">SOC</span></span>
+    <span>Nessus · Metasploit · Windows Firewall · 2026</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>EternalBlue on Windows 7: from scan finding to blocked attack</h3>
+      <p class="sub">Proved a Nessus finding was real by exploiting it, then remediated an end-of-life host that can't be patched and rescanned to confirm.</p>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li><b>Find:</b> ran a Nessus Basic Network Scan against the Windows 7 VM and confirmed <mark>MS17-010 (EternalBlue)</mark>, then broke down the CVSS metrics of its CVEs.</li>
+          <li><b>Validate:</b> exploited it from Kali with Metasploit's <code>ms17_010_eternalblue</code> module, got a Meterpreter session, migrated into <code>explorer.exe</code> to hide the process, and <mark>captured the victim's keystrokes</mark> with the keylogger.</li>
+          <li><b>Remediate:</b> turning on the firewall alone changed nothing in the rescan. I then created inbound rules <mark>blocking TCP 445 and 139</mark> on every profile, and the next rescan no longer showed the SMB findings.</li>
+          <li><b>Next steps:</b> identified more ports to close from the remaining Criticals, port 21 (FileZilla FTP) and 3389 (RDP).</li>
+        </ul>
+      </div>
+      <dl class="facts">
+        <div><dt>Target</dt><dd>Windows 7 SP1, end of life</dd></div>
+        <div><dt>Finding</dt><dd>MS17-010 SMBv1 remote code execution</dd></div>
+        <div><dt>Exploit</dt><dd>Metasploit, Meterpreter, process migration, keylogger</dd></div>
+        <div><dt>Fix</dt><dd>Host firewall rules (compensating control)</dd></div>
+        <div><dt>Verified</dt><dd>Rescan: SMB findings gone</dd></div>
+      </dl>
+    </div>
+    <div class="evidence">
+      <figure><button type="button" aria-label="Enlarge: EternalBlue exploit"><img src="img/eb_exploit.jpg" alt="Metasploit output showing the target is vulnerable to MS17-010 and a Meterpreter session opened" loading="lazy"></button><figcaption>Exploit confirms MS17-010 and opens a session</figcaption></figure>
+      <figure><button type="button" aria-label="Enlarge: keystroke capture"><img src="img/eb_keys.jpg" alt="Meterpreter migrating into explorer.exe and dumping captured keystrokes" loading="lazy"></button><figcaption>Migrated into explorer.exe and dumped keystrokes</figcaption></figure>
+    </div>
+  </div>
+</article>
+
+<article id="cis-gap" class="case" data-roles="grc soc">
+  <div class="docket">
+    <span class="id">CASE-03 · Post-incident gap analysis</span>
+    <span class="roles"><span class="role" data-r="grc">GRC</span><span class="role" data-r="soc">SOC</span></span>
+    <span>CIS Controls v8 · Jun 2026</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>What would have stopped the breach? A CIS Controls gap analysis</h3>
+      <p class="sub">A case study breach: an unregistered personal laptop on corporate Wi-Fi carried a worm that reached an anonymous-access FTP server, and a large encrypted exfiltration of proprietary designs was routed to the help desk instead of security.</p>
+    </div>
+    <div class="tbl" role="region" aria-label="Gaps mapped to CIS Controls" tabindex="0">
+      <table>
+        <thead><tr><th>Gap in the incident</th><th>CIS Control</th><th>Safeguards</th></tr></thead>
+        <tbody>
+          <tr><td>Unknown laptop joined the corporate network</td><td>1 Asset inventory &amp; control</td><td class="mono">1.1 · 1.2</td></tr>
+          <tr><td>FTP server allowed anonymous access</td><td>4 Secure configuration</td><td class="mono">4.1 · 4.3</td></tr>
+          <tr><td>No behavior-based endpoint detection</td><td>10 Malware defenses</td><td class="mono">10.3 · 10.5</td></tr>
+          <tr><td>FTP reachable from the wireless segment</td><td>12 Network infrastructure</td><td class="mono">12.3 · 12.4</td></tr>
+          <tr><td>No central alerting or network IDS</td><td>13 Network monitoring &amp; defense</td><td class="mono">13.1 · 13.4</td></tr>
+          <tr><td>Staff didn't recognize or report it</td><td>14 Security awareness</td><td class="mono">14</td></tr>
+          <tr><td>Exfiltration ticket went to the help desk; no 24/7 SOC</td><td>17 Incident response</td><td class="mono">17.2 · 17.4 · 17.5 · 17.6</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">For each gap I explained how the safeguard would have broken the attack chain. For example, network access control would have dropped the laptop onto a guest VLAN that couldn't reach the FTP server, and a severity matrix would have sent a large outbound transfer straight to the security team.</p>
+  </div>
+</article>
+
+<article id="incident-report" class="case" data-roles="soc grc">
+  <div class="docket">
+    <span class="id">CASE-04 · Incident reporting &amp; email analysis</span>
+    <span class="roles"><span class="role" data-r="soc">SOC</span><span class="role" data-r="grc">GRC</span></span>
+    <span>OWASP · FERPA · Thunderbird</span>
+  </div>
+  <div class="case-body">
+    <div>
+      <h3>Writing up a pen-test finding for leadership</h3>
+      <p class="sub">An incident report, written as the information security manager, after a third-party penetration test found broken access control and injection flaws in a university's student portal.</p>
+    </div>
+    <div class="cols">
+      <div class="prose">
+        <ul>
+          <li>Documented discovery, validation, scope and duration: an estimated <mark>22,000 students and 80 staff</mark> exposed for about six months.</li>
+          <li>Assessed impact on data, systems, money, reputation and regulation (FERPA, GDPR), and classified the information involved by sensitivity.</li>
+          <li>Built a <mark>mitigation plan with timelines</mark>: WAF virtual patches and IDS within a month, stored procedures, deny-by-default access, server-side authorization checks, and a possible rollback of the faulty update.</li>
+        </ul>
+        <p><span class="label">Also: email header analysis</span><br>In a separate lab I read a message's full headers in Thunderbird and traced each hop between the two mail servers, the virus-scan stamps, the DKIM signature and the message ID, the same skills used to triage phishing.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Findings</dt><dd>Broken access control, injection, privilege escalation</dd></div>
+        <div><dt>Users</dt><dd>~22,000 students, 80 staff</dd></div>
+        <div><dt>Regulation</dt><dd>FERPA, GDPR</dd></div>
+        <div><dt>Mitigations</dt><dd>WAF, IDS, stored procedures, deny-by-default, server-side authorization</dd></div>
+      </dl>
+    </div>
+    <div class="evidence">
+      <figure><button type="button" aria-label="Enlarge: email headers"><img src="img/hdr.jpg" alt="Full email headers open in Thunderbird showing received hops and DKIM signature" loading="lazy"></button><figcaption>Message headers traced in Thunderbird</figcaption></figure>
+    </div>
+  </div>
+</article>
+    </div>
+  </section>
+
+  <section aria-labelledby="more-h">
+    <div class="sec-head"><h2 id="more-h">Hiring for a different role?</h2></div>
+    <div class="links">
+      <a href="vulnerability-management.html">Vulnerability Management</a>
+      <a href="grc.html">Governance, Risk &amp; Compliance</a>
+      <a href="it-support.html">IT Support &amp; Help Desk</a>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Contact</h2></div>
+    <div class="contact">
+      <p class="big">Open to SOC, vulnerability management, GRC and IT support roles in the Orlando area.</p>
+      <div class="links">
+        <a class="primary" href="mailto:Devinjim09@gmail.com">Email me</a>
+        <a href="https://www.linkedin.com/in/devin-jacob-jimenez">LinkedIn</a>
+        <a href="https://github.com/DevinjJim">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Devin J. Jimenez · Coursework portfolio · Client names and networks in these projects are fictional lab scenarios.</div>
+</footer>
+
+<dialog id="lightbox" aria-label="Screenshot">
+  <img id="lightbox-img" alt="">
+  <div class="bar"><span id="lightbox-cap"></span><button type="button" id="lightbox-close">Close</button></div>
+</dialog>
+
+<script src="site.js"></script>
+</body>
+</html>
